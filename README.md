@@ -1,6 +1,6 @@
-# vueLama
+# ProjectHub
 
-> Workout App - Vuejs
+> ProjectHub App - JSUpskill
 
 ## Build Setup
 
