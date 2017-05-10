@@ -5,7 +5,7 @@
       <ol class="timeline">
         <single-project v-for="project in projects" :key="project._id" :project="project"></single-project>
       </ol>
-      <button class="btn light-blue darken-3 add-new-btn" href="/projects/new">Dodaj</button>
+      <router-link tag="button" class="btn light-blue darken-3 add-new-btn" :to="{path: '/project/new', hash: 'here'}" >Dodaj</router-link>
     </div>
   </div>
 </template>
@@ -22,7 +22,10 @@
       }
     },
     created () {
-      this.projects = mock
+      this.$http.get('/projects')
+      .then((res) => {
+          this.projects = res.data
+      })
     },
     components: {
       SingleProject

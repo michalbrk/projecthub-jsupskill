@@ -1,12 +1,11 @@
 <template>
   <nav class="nav-extended light-blue darken-3">
     <div class="nav-wrapper">
-      <a href="/" class="brand-logo">ProjectHub</a>
-    </div>
+        <a href="/" class="brand-logo">ProjectHub</a>
     <div class="nav-content">
       <ul class="tabs tabs-transparent">
-        <li href="/" class="tab active"><a>Główna</a></li>
-        <li href="/projects" class="tab"><a>Projekty</a></li>
+        <router-link to="/" tag="li" class="tab" active-class="active" exact><a>Główna</a></router-link>
+        <router-link to="/project" tag="li" class="tab" active-class="active"><a>Projekty</a></router-link>
       </ul>
     </div>
   </nav>

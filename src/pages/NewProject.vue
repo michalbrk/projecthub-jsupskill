@@ -10,12 +10,15 @@
       <button class="btn light-blue darken-3" type="submit">Dodaj</button>
     </form>
     <button class="btn light-blue darken-3 add-new-btn" href="/projects">Wróć</button>
+      <div style="height: 1000px"></div>
+      <p id="here">tutaj</p>
   </div>
 </template>
 
 <script>
   import mock from '../data/mock'
   import _ from 'lodash'
+  import toastr from 'toastr'
 
   export default {
     data () {
@@ -28,12 +31,18 @@
     },
     methods: {
       submit () {
-        let id = Math.floor(Math.random() * 10000000)
-        const project = _.clone(this.newProject)
-        project['_id'] = id
-        mock.push(project)
-        this.newProject.name = ''
-        console.log('redirect to /projects')
+        this.$http.post('/projects', this.newProject)
+        .then(() => {
+            console.log(res)
+            this.newProject.name = ''
+            this.newProject.name = ''
+            
+            this.$router.push( {name: 'projects'} )
+            toastr.success('Udało się')
+        })
+        .catch((err) => {
+            console.log(err)
+        })
       }
     }
   }

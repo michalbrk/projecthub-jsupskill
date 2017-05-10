@@ -29,7 +29,7 @@
     name: 'app',
     data () {
       return {
-        name: 'BMW',
+        name: this.$route.params.name,
         isEditing: false,
         editedItem: {},
         project: {}
@@ -51,7 +51,16 @@
       EditItemModal
     },
     created () {
-      this.project = _.find(mock, {name: this.name})
+        
+        this.$hhtp.get('/projects/${this.name}')
+        .then((res) => {
+            this.project = res.data
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+        
+    //  this.project = _.find(mock, {name: this.name})
 
       eventBus.$on('editEvent', (data) => {
         this.editedItem = data
